@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import './App.css'
 import Layout from "./components/layout";
-import PuenteDeMando from "./components/puenteDeMando";
-import Contratar from "./components/contratar";
-import Misiones from "./components/misiones";
+import CommandBridge from "./components/commandBridge";
+import Engage from "./components/engage";
+import Missions from "./components/missions";
 
 const App = () => {
   return (
@@ -11,10 +11,10 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Navigate to="/puenteDeMando" replace/>} />
-            <Route path="puenteDeMando" element={<PuenteDeMando />}></Route>
-            <Route path="contratar" element={<Contratar />}></Route>
-            <Route path="misiones" element={<Misiones />}></Route>
+            <Route index element={<Navigate to="/commandBridge" replace/>} />
+            <Route path="commandBridge" element={<CommandBridge />}></Route>
+            <Route path="engage" element={<Engage />}></Route>
+            <Route path="missions" element={<Missions />}></Route>
             <Route path="*" element={ <h1> Error 404</h1>}></Route>
           </Route>
         </Routes>

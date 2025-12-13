@@ -1,4 +1,5 @@
 
+import type { Character } from "../models/charactersModels/interfaces";
 import type { spaceShift } from "../models/spaceShiftModels/interfaces";
 import type { RetournedValuesContext, ShipContentProps } from "./interfaces";
 import { useContext, createContext, useState } from "react";
@@ -21,12 +22,44 @@ export const useShip = () => {
  * @param {ShipContentProps} children 
  * 
  */
-export default function ShipContext({children}:ShipContentProps){
+export default function ShipProvider({children}:ShipContentProps){
 
-    const [ship, setShip] = useState<spaceShift[]>([]);
+    const [ship, setShip] = useState<spaceShift>({
+        credits:1000,
+        fuelLevel:100,
+        crew:[]
+    });
 
+    function hireCharacter(newCrewMember:Character){
+            if(ship.credits>=200 && ship.crew.length <=3 && newCrewMember.status!="Dead"){
+                spendMoney();
+                addCrewMember(newCrewMember);
+            }
+    }
+
+    function beginMision(){
+        spendFuel();
+    }
+
+    function spendMoney(){
+        setShip({...ship, credits:ship.credits-200});
+    }
+
+    function earnRandomMoney(){
+        setShip({...ship, credits:ship.credits+Math.random()*100});
+    }
+
+    function spendFuel(){
+        setShip({...ship, fuelLevel:ship.fuelLevel-25});
+    }
+
+    function addCrewMember(newCrewMember:Character){
+        const newCrew = [...ship.crew, newCrewMember];
+        setShip({...ship, crew:newCrew});
+    }
     const retournedValues : RetournedValuesContext = {
-        ship
+        ship,
+        hireCharacter
     }
 
     return(

@@ -1,6 +1,6 @@
 export interface Main {
     info:    Info;
-    results: Result[];
+    results: Places[];
 }
 
 export interface Info {
@@ -10,7 +10,7 @@ export interface Info {
     prev:  null;
 }
 
-export interface Result {
+export interface Places {
     id:        number;
     name:      string;
     type:      string;

@@ -5,6 +5,7 @@ import CommandBridge from "./components/commandBridge";
 import Engage from "./components/engage";
 import Missions from "./components/missions";
 import ShipProvider from "./context/ShipContext";
+import Error from "./components/Error";
 
 const App = () => {
   return (
@@ -17,7 +18,7 @@ const App = () => {
               <Route path="commandBridge" element={<CommandBridge />}></Route>
               <Route path="engage" element={<Engage />}></Route>
               <Route path="missions" element={<Missions />}></Route>
-              <Route path="*" element={ <h1> Error 404</h1>}></Route>
+              <Route path="*" element={<Error/>}></Route>
             </Route>
           </Routes>
         </ShipProvider>

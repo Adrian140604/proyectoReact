@@ -1,4 +1,4 @@
-interface CardCharacterProps{
+export interface CardCharacterProps{
     name:     string;
     status:   string;
     image:    string;

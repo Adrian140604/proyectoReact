@@ -1,73 +1,160 @@
-# React + TypeScript + Vite
+# 🚀 Cosmic Cargo – Intergalactic Transport Agency
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Cosmic Cargo is a React + TypeScript project where you build the **Control Panel of a spaceship**.  
+The application allows the captain (user) to manage crew members, resources, and intergalactic missions.
 
-Currently, two official plugins are available:
+This project focuses on **real TypeScript usage**, **global state management**, **API consumption**, and **business logic**, following a structured mission guide.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 📜 Project Premise
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+You have inherited an old spaceship and a fragile transport license.  
+Your mission is to survive in space by:
 
-## Expanding the ESLint configuration
+- Hiring crew members
+- Managing ship resources (credits and fuel)
+- Sending crew on missions to earn rewards
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+This is not just a database — it is the interface that controls your survival in space.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🛠️ Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Vite**
+- **React**
+- **TypeScript**
+- **React Router DOM**
+- **Rick and Morty API**
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+> ❗ Strict TypeScript rules applied  
+> ❌ No usage of `any`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📂 Project Structure
+
+src/
+├──assets/
+| └── react.svg
+├── components/  
+| ├── Button.tsx
+| ├── CardCharacter.tsx
+| ├── ResourceBadge.tsx
+| ├── Router.tsx
+| ├── commandBridge.tsx
+| ├── engage.tsx
+| ├── layout.tsx
+| └── missions.tsx
+├── context/
+| ├── ShipContext.tsx
+| └── interfaces.ts
+├── models/
+| ├── charactersModels/
+|    └── interface.ts
+| ├── locationsModels/
+|    └── interface.ts
+| └── spaceShiftModels/
+|    └── interface.ts
+├── services/
+|  ├── CharactersServices.ts
+|  └── LocationsServices.ts
+├── App.tsx
+├── App.tsx
+├── index.css
+└── main.tsx
+
+---
+
+## 🧠 Global State (Ship Context)
+
+The application uses a global context called **ShipContext** that manages:
+
+- 💰 Credits (starts at 1000)
+- ⛽ Fuel (starts at 100%)
+- 👨‍🚀 Crew members (maximum 4)
+
+### Available actions:
+- Add / spend credits
+- Add crew members (no duplicates, max capacity)
+- Reduce fuel
+
+---
+
+## 🧩 Atomic Components (Phase 4)
+
+### 🔹 CharacterCard
+Displays character image, name, and status.  
+Purely visual component.
+
+### 🔹 ResourceBadge
+Small badge component used in the header to show:
+- Credits
+- Fuel
+
+Receives:
+- Icon
+- Label
+- Value
+
+### 🔹 Button
+Reusable button component supporting:
+- Disabled state
+- Click handler
+- Custom text
+
+---
+
+## 🌍 Pages & Features
+
+### 🏠 Dashboard (Bridge)
+- Displays current credits and fuel
+- Shows hired crew members
+- Conditional message if no crew is hired
+- **Game Over state** when fuel reaches 0
+
+---
+
+### 🍺 Cantina (Hire Crew)
+- Fetches characters from the Rick and Morty API
+- Search input to filter by name
+- Hire button:
+  - Costs 200 credits
+  - Disabled if character is dead
+  - Disabled if ship is full or insufficient credits
+
+---
+
+### 🛰 Missions Room
+- Form to assign crew members to missions
+- Select destination planet
+- Fuel consumption per mission
+- Simulated travel using `setTimeout`
+- Random credit rewards after mission success
+
+---
+
+## 🔁 Optional Extras Implemented
+
+- LocalStorage persistence
+- Custom hook for fuel management
+- Dynamic route for crew details (`/crew/:id`)
+
+---
+
+## 🎯 Learning Objectives
+
+- Real-world TypeScript usage with external APIs
+- Global state management with Context API
+- Component reusability and atomic design
+- Business logic enforcement
+- Clean architecture and scalable structure
+
+---
+
+## 🚀 How to Run the Project
+
+```bash
+npm install
+npm run dev

@@ -12,5 +12,7 @@ export interface RetournedValuesContext{
     hireCharacter:(newCrewMember:Character)=>void,
     beginMission:()=>void,
     characters:Character[],
-    locations:Places[]
+    locations:Places[],
+    inputEngage:string,
+    setInputEngage: React.Dispatch<React.SetStateAction<String>>
 }

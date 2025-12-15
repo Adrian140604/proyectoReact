@@ -1,9 +1,31 @@
+import { useShip } from "../context/ShipContext";
+import CharacterCard from './CardCharacter';
+
 const CommandBridge = () => {
-  return (
+
+  const {ship} = useShip();
+  const crew = ship.crew;
+
+  if(ship.fuelLevel==0 || ship.fuelLevel<0){
+    alert("GAME OVER");
+  }
+
+  if(crew.length == 0){
+
+    return(
+        <>
+          <p>Invitando a contratar</p>
+        </>
+    );
+
+  }else{
+
+    return(
     <>
-      <p>It took me a while to translate the expression "Puente de mando", I hate Yankees</p>
-    </>
-  );
+      {crew.map(CharacterValue=> CharacterCard(CharacterValue))}
+    </>);
+
+  }
 };
 
 export default CommandBridge;

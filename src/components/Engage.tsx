@@ -5,7 +5,7 @@ import CharacterCard from "./CardCharacter";
 import { useEffect } from "react";
 
 export function renderAllCharacter(){
-    useEffect(()=>{
+    return useEffect(()=>{
         allCharacter();
     },[])
 }
@@ -16,8 +16,6 @@ async function allCharacter(){
     characters.map((c :Character) => (
         CharacterCard(c)
     ))
-    
-    return 
 }
 
 
@@ -57,3 +55,4 @@ const Engage = () => {
 };
 
 export default Engage;
+

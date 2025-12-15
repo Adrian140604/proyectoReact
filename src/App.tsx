@@ -1,8 +1,13 @@
-import allCharacter from "./components/CharacterCard";
+import './App.css'
+import Router from "./components/Router"
 
-function App() {
-
-  return allCharacter;
+const App = () => {
+  return (
+    <>
+      <Router />
+    </>
+  )
 }
 
-export default App
+
+export default App;

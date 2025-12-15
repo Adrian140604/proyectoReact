@@ -34,7 +34,8 @@ export default function ShipProvider({children}:ShipContentProps){
     });
 
     const [characters, setCharacter] = useState<Character[]>([]);
-    const [locations, setLocations] = useState<Places[]>([])
+    const [locations, setLocations] = useState<Places[]>([]);
+    const [inputEngage, setInputEngage] = useState<String>("");
 
     useEffect(() =>{
         getAllCharactersAndLocations();

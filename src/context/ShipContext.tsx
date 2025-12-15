@@ -3,7 +3,10 @@ import type { Character } from "../models/charactersModels/interfaces";
 import type { spaceShift } from "../models/spaceShiftModels/interfaces";
 import type { RetournedValuesContext, ShipContentProps } from "./interfaces";
 import { useContext, createContext, useState } from "react";
-
+import type { Places } from "../models/locationsModels/interfaces";
+import { getCharacters } from "../services/CharactersServices";
+import { getPlaces } from "../services/LocationsServices";
+import { useEffect } from "react";
 
 const ShipSpaceContext = createContext<RetournedValuesContext | null>(null);
 
@@ -30,12 +33,28 @@ export default function ShipProvider({children}:ShipContentProps){
         crew:[]
     });
 
+    const [characters, setCharacter] = useState<Character[]>([]);
+    const [locations, setLocations] = useState<Places[]>([])
+
+    useEffect(() =>{
+        getAllCharactersAndLocations();
+    }, [])
+
+     async function getAllCharactersAndLocations(){
+        const dataCharacters = await getCharacters();
+        const dataPlaces = await getPlaces();
+        setLocations(dataPlaces);
+        setCharacter(dataCharacters);
+    }
+
     function hireCharacter(newCrewMember:Character){
             if(ship.credits>=200 && ship.crew.length <=3 && newCrewMember.status!="Dead"){
                 spendMoney();
                 addCrewMember(newCrewMember);
             }
     }
+
+   
 
     function beginMission(){
         spendFuel();
@@ -61,7 +80,9 @@ export default function ShipProvider({children}:ShipContentProps){
     const retournedValues : RetournedValuesContext = {
         ship,
         hireCharacter,
-        beginMission
+        beginMission,
+        characters,
+        locations
     }
 
     return(

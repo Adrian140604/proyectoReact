@@ -1,4 +1,25 @@
-import {renderAllCharacter} from "./CharacterCard";
+
+import type { Character } from "../models/charactersModels/interfaces";
+import {getCharacters} from '../services/CharactersServices';
+import CharacterCard from "./CardCharacter";
+import { useEffect } from "react";
+
+export function renderAllCharacter(){
+    useEffect(()=>{
+        allCharacter();
+    },[])
+}
+
+async function allCharacter(){
+    let characters = await getCharacters();
+
+    characters.map((c :Character) => (
+        CharacterCard(c)
+    ))
+    
+    return 
+}
+
 
 const Engage = () => {
   return (

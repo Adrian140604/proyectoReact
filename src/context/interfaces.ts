@@ -8,5 +8,6 @@ export interface ShipContentProps{
 
 export interface RetournedValuesContext{
     ship:spaceShift,
-    hireCharacter:(newCrewMember:Character)=>void
+    hireCharacter:(newCrewMember:Character)=>void,
+    beginMission:()=>void
 }

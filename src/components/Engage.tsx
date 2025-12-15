@@ -1,25 +1,21 @@
 
-import type { Character } from "../models/charactersModels/interfaces";
-import {getCharacters} from '../services/CharactersServices';
+import { useShip } from "../context/ShipContext";
 import CharacterCard from "./CardCharacter";
-import { useEffect } from "react";
+import type { Character } from "../models/charactersModels/interfaces";
 
-export function renderAllCharacter(){
-    return useEffect(()=>{
-        allCharacter();
-    },[])
-}
 
-async function allCharacter(){
-    let characters = await getCharacters();
-
-    characters.map((c :Character) => (
-        CharacterCard(c)
-    ))
-}
 
 
 const Engage = () => {
+    let renderCharacters:Character[] = [];
+    if(localStorage.getItem("characters")){
+        renderCharacters = JSON.parse(localStorage.getItem("characters")!);
+    } else{
+          const {characters} = useShip();
+          renderCharacters = characters;
+          localStorage.setItem("characters", JSON.stringify(characters));
+    }
+       
   return (
     <>
 <div className="app-frame">
@@ -45,7 +41,7 @@ const Engage = () => {
 
         <div className="row row-cols-2 row-cols-md-4 g-3">
 
-            {renderAllCharacter()}
+            {renderCharacters.map(character => <CharacterCard name={character.name} status={character.status} image={character.image}/>)}
 
         </div> 
     </div> 

@@ -32,41 +32,41 @@ This is not just a database — it is the interface that controls your survival 
 > ❌ No usage of `any`
 
 ---
-
+```
 ## 📂 Project Structure
 
 src/
 ├──assets/
-| └── react.svg
+│ └── react.svg
 ├── components/  
-| ├── Button.tsx
-| ├── CardCharacter.tsx
-| ├── ResourceBadge.tsx
-| ├── Router.tsx
-| ├── commandBridge.tsx
-| ├── engage.tsx
-| ├── layout.tsx
-| └── missions.tsx
+│ ├── Button.tsx
+│ ├── CardCharacter.tsx
+│ ├── ResourceBadge.tsx
+│ ├── Router.tsx
+│ ├── commandBridge.tsx
+│ ├── engage.tsx
+│ ├── layout.tsx
+│ └── missions.tsx
 ├── context/
-| ├── ShipContext.tsx
-| └── interfaces.ts
+│ ├── ShipContext.tsx
+│ └── interfaces.ts
 ├── models/
-| ├── charactersModels/
-|    └── interface.ts
-| ├── locationsModels/
-|    └── interface.ts
-| └── spaceShiftModels/
-|    └── interface.ts
+│ ├── charactersModels/
+│    └── interface.ts
+│ ├── locationsModels/
+│    └── interface.ts
+│ └── spaceShiftModels/
+│    └── interface.ts
 ├── services/
-|  ├── CharactersServices.ts
-|  └── LocationsServices.ts
-├── App.tsx
+│  ├── CharactersServices.ts
+│  └── LocationsServices.ts
+├── App.css
 ├── App.tsx
 ├── index.css
 └── main.tsx
 
 ---
-
+```
 ## 🧠 Global State (Ship Context)
 
 The application uses a global context called **ShipContext** that manages:

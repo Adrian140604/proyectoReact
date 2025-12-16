@@ -6,14 +6,14 @@ export interface CardCharacterProps{
     species:  string;
 }
 
-const CharacterCard = ({ id, name, status, image, species }: CardCharacterProps) => {
+const CharacterCard = ({ name, status, image, species }: CardCharacterProps) => {
   return (
-    <div className="card h-100 shadow-sm rounded overflow-hidden" key={id}>
+    <div className="card w-100 shadow-sm rounded overflow-hidden">
       <img
         src={image}
-        className="card-img-top img-fluid"
+        className="card-img-top"
         alt={name}
-        style={{ objectFit: "cover", height: "250px" }}
+        style={{ objectFit: "cover", maxHeight: "250px" }}
       />
       <div className="card-body text-center">
         <h5 className="card-title fw-bold mb-1">{name}</h5>
@@ -37,6 +37,5 @@ const CharacterCard = ({ id, name, status, image, species }: CardCharacterProps)
     </div>
   );
 };
-
 
 export default CharacterCard;

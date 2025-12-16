@@ -30,6 +30,8 @@ export default function ShipProvider({children}:ShipContentProps){
         crew:[]
     });
 
+    
+
     function hireCharacter(newCrewMember:Character){
             if(ship.credits>=200 && ship.crew.length <=3 && newCrewMember.status!="Dead"){
                 spendMoney();

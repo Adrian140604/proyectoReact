@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useShip } from "../context/ShipContext";
 import { getPlaces } from "../services/LocationsServices";
 
-const Missions = () => {
+const Missions = async () => {
   const {ship} = useShip();
   const crew = ship.crew
-  const places = getPlaces();
+  const places = await getPlaces();
   return (
     <>
     <div className="header">
@@ -24,14 +24,16 @@ const Missions = () => {
                 <select name="planeta" className="control-button select-control" required>
                     <option value="" disabled selected>SELECCIONAR PLANETA</option>
                     {
-                      crew.map( (character) => {return  <option value={character.name}>{character.name}</option>;})
+                      typeof places !== "string"
+                        ? places.map((place) => (<option key={place.name} value={place.name}>{place.name}</option>))
+                        : null
                     }
                 </select>
                 
                 <select name="tripulante" className="control-button select-control" required>
                     <option value="" disabled selected>ASIGNAR TRIPULANTE</option>
                     {
-                      crew.map( (character) => {return  <option value={character.name}>{character.name}</option>;})
+                      crew.map( (character) => {return  <option key={character.id} value={character.name}>{character.name}</option>;})
                     }
                 </select>
 

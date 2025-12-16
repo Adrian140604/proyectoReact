@@ -25,6 +25,7 @@ const CommandBridge = () => {
       {crew.map(CharacterValue=> CharacterCard(CharacterValue))}
     </>);
 
+
   }
 };
 

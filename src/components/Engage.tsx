@@ -5,17 +5,24 @@ import CharacterCard from "./CardCharacter";
 import { useEffect } from "react";
 
 export function renderAllCharacter(){
-    return useEffect(()=>{
+    useEffect(()=>{
         allCharacter();
     },[])
 }
 
 async function allCharacter(){
+    
     let characters = await getCharacters();
 
-    characters.map((c :Character) => (
-        CharacterCard(c)
-    ))
+    if(typeof(characters)!="string"){
+        characters.map((c :Character) => (
+           CharacterCard(c)
+          ))
+    }else{
+        alert(characters)
+    }
+    
+    return 
 }
 
 
@@ -55,4 +62,3 @@ const Engage = () => {
 };
 
 export default Engage;
-

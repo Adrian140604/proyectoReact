@@ -8,34 +8,43 @@ export interface CardCharacterProps{
 }
 
 const CharacterCard = ({ character, type }: CardCharacterProps) => {
-  const {hireCharacter, fireCharacter} = useShip();
+  const { hireCharacter, fireCharacter } = useShip();
 
   return (
-    <div className="card h-100 shadow-sm rounded overflow-hidden" key={character.id}>
+    <div className="card shadow-sm">
       <img
         src={character.image}
-        className="card-img-top img-fluid"
+        className="card-img-top"
         alt={character.name}
-        style={{ objectFit: "cover", height: "250px" }}
       />
       <div className="card-body text-center">
-        <h5 className="card-title fw-bold mb-1">{character.name}</h5>
-        <p className="card-text">
-          <span
-            className={`badge ${
-              character.status === "Alive"
-                ? "bg-success"
-                : character.status === "Dead"
-                ? "bg-danger"
-                : "bg-secondary"
-            }`}
-          >
-            {character.status}
-          </span>
-        </p>
-        <div className="mt-2">
-          {type=="hire" && <Button text="Contratar" onClick={() => hireCharacter(character)}/>}
-          {type=="see" && <Button text="Despedir" onClick={() => fireCharacter(character)}/>}
+        <h5 className="card-title mb-2">{character.name}</h5>
+
+        <span
+          className={`badge mb-3 ${
+            character.status === "Alive"
+              ? "bg-success"
+              : character.status === "Dead"
+              ? "bg-danger"
+              : "bg-secondary"
+          }`}
+        >
+          {character.status}
+        </span>
+
+        <div className="d-grid mt-3">
+          {type === "hire" && (
+            <Button
+              text="Contratar"
+              onClick={() => hireCharacter(character)}
+            />
+          )}
+          {type === "see" && (
+            <Button
+              text="Despedir"
+              onClick={() => fireCharacter(character)}
+            />
+          )}
         </div>
       </div>
     </div>

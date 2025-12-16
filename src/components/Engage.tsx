@@ -52,7 +52,9 @@ const Engage = () => {
 
         <div className="row row-cols-2 row-cols-md-4 g-3">
 
-            {renderAllCharacter()}
+
+            {renderCharacters.map((character) => <CharacterCard {...character} />)}
+
 
         </div> 
     </div> 

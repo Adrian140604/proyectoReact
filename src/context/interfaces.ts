@@ -10,7 +10,8 @@ export interface ShipContentProps{
 export interface RetournedValuesContext{
     ship:spaceShift,
     hireCharacter:(newCrewMember:Character)=>void,
-    beginMission:()=>void,
+    spendFuel: () => void,
+    earnRandomMoney: () => void,
     characters:Character[],
     locations:Places[],
     fireCharacter:(firedCharacter:Character)=>void

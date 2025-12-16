@@ -91,7 +91,8 @@ export default function ShipProvider({children}:ShipContentProps){
         hireCharacter,
         beginMission,
         characters,
-        locations
+        locations,
+        inputEngage
     }
 
     return(

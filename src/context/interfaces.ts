@@ -13,6 +13,6 @@ export interface RetournedValuesContext{
     beginMission:()=>void,
     characters:Character[],
     locations:Places[],
-    inputEngage:string,
-    setInputEngage: React.Dispatch<React.SetStateAction<String>>
+    inputEngage:String,
+
 }

@@ -21,9 +21,6 @@ const CharacterCard = ({ character, type }: CardCharacterProps) => {
       <div className="card-body text-center">
         <h5 className="card-title fw-bold mb-1">{character.name}</h5>
         <p className="card-text">
-          <small className="text-muted">{character.species}</small>
-        </p>
-        <div className="mt-2">
           <span
             className={`badge ${
               character.status === "Alive"
@@ -35,6 +32,8 @@ const CharacterCard = ({ character, type }: CardCharacterProps) => {
           >
             {character.status}
           </span>
+        </p>
+        <div className="mt-2">
           {type=="hire" && <Button text="Contratar" onClick={() => hireCharacter(character)}/>}
           {type=="see" && <Button text="Despedir" onClick={() => fireCharacter(character)}/>}
         </div>

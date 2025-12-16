@@ -58,7 +58,7 @@ const Missions = () => {
 
                 {crew.length ==0 && <span className =" m-2 text-danger fw-bold small p-1 border border-danger rounded bg-danger bg-opacity-10 d-inline-block text-center">No existen tripulantes todavía</span>}
 
-                <button type="submit" className="control-button start-mission-button">INICIAR MISIÓN</button>
+               {crew.length>0 && <button type="submit" className="control-button start-mission-button">INICIAR MISIÓN</button>}
             </div>
         </div>
     </form>

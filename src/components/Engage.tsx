@@ -1,11 +1,7 @@
 
-import { useShip } from "../context/ShipContext";
-import CharacterCard from "./CardCharacter";
 import type { Character } from "../models/charactersModels/interfaces";
+
 import { useState } from "react";
-
-
-
 
 const Engage = () => {
 
@@ -59,4 +55,3 @@ const Engage = () => {
 };
 
 export default Engage;
-

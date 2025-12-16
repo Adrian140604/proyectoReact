@@ -33,6 +33,7 @@ export default function ShipProvider({children}:ShipContentProps){
         crew:[]
     });
 
+
     const [characters, setCharacter] = useState<Character[]>([]);
     const [locations, setLocations] = useState<Places[]>([]);
    
@@ -44,9 +45,18 @@ export default function ShipProvider({children}:ShipContentProps){
      async function getAllCharactersAndLocations(){
         const dataCharacters = await getCharacters();
         const dataPlaces = await getPlaces();
-        setLocations(dataPlaces);
-        setCharacter(dataCharacters);
+        if(typeof(dataPlaces)!="string"){
+            setLocations(dataPlaces);
+        }else{
+            alert(dataPlaces);
+        }
+        if(typeof(dataCharacters)!="string"){
+            setCharacter(dataCharacters);
+        }else{
+            alert(dataCharacters);
+        }
     }
+
 
     function hireCharacter(newCrewMember:Character){
             if(ship.credits>=200 && ship.crew.length <=3 && newCrewMember.status!="Dead"){

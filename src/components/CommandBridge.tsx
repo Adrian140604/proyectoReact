@@ -1,5 +1,6 @@
 import { useShip } from "../context/ShipContext";
 import CharacterCard from './CardCharacter';
+import ResourceBadge from "./ResourceBadge";
 
 const CommandBridge = () => {
 
@@ -103,16 +104,22 @@ const CommandBridge = () => {
   }else{
 
     return (
-      <div className="container mt-4">
-        <h2 className="text-center mb-4">Crew Members</h2>
-        <div className="row">
-          {crew.map((character) => (
-            <div className="col-md-4 mb-3">
-              <CharacterCard {...character} />
+      <>
+        <div>
+          <div>
+          </div>
+          <div className="container mt-4">
+            <h2 className="text-center mb-4">Crew Members</h2>
+            <div className="row">
+              {crew.map((character) => (
+                <div className="col-md-4 mb-3">
+                  <CharacterCard {...character} />
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
-      </div>
+      </>
     );
 
 

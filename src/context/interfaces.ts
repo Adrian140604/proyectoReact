@@ -12,7 +12,13 @@ export interface RetournedValuesContext{
     hireCharacter:(newCrewMember:Character)=>void,
     beginMission:()=>void,
     characters:Character[],
-    locations:Places[],
+    locations:Places[]
 
 
+}
+
+export interface Hire{
+    text:string,
+    onClick:()=>void,
+    disabled:false
 }

@@ -7,6 +7,8 @@ import type { Places } from "../models/locationsModels/interfaces";
 import { getCharacters } from "../services/CharactersServices";
 import { getPlaces } from "../services/LocationsServices";
 import { useEffect } from "react";
+import type { Hire } from "./interfaces";
+
 
 const ShipSpaceContext = createContext<RetournedValuesContext | null>(null);
 
@@ -83,8 +85,11 @@ export default function ShipProvider({children}:ShipContentProps){
     }
 
     function addCrewMember(newCrewMember:Character){
-        const newCrew = [...ship.crew, newCrewMember];
-        setShip({...ship, crew:newCrew});
+                setShip(prevShip => ({
+                ...prevShip,
+                crew: [...prevShip.crew, newCrewMember]
+                }));
+
     }
     const retournedValues : RetournedValuesContext = {
         ship,

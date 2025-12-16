@@ -1,24 +1,32 @@
 
-import { useShip } from "../context/ShipContext";
-import CharacterCard from "./CardCharacter";
 import type { Character } from "../models/charactersModels/interfaces";
+import {getCharacters} from '../services/CharactersServices';
+import CharacterCard from "./CardCharacter";
+import { useEffect } from "react";
 
+export function renderAllCharacter(){
+    useEffect(()=>{
+        allCharacter();
+    },[])
+}
 
+async function allCharacter(){
+    
+    let characters = await getCharacters();
+
+    if(typeof(characters)!="string"){
+        characters.map((c :Character) => (
+           CharacterCard(c)
+          ))
+    }else{
+        alert(characters)
+    }
+    
+    return 
+}
 
 
 const Engage = () => {
-
-    const {inputEngage} = useShip();
-
-    let renderCharacters:Character[] = [];
-    if(localStorage.getItem("characters")){
-        renderCharacters = JSON.parse(localStorage.getItem("characters")!);
-    } else{
-          const {characters} = useShip();
-          renderCharacters = characters;
-          localStorage.setItem("characters", JSON.stringify(characters));
-    }
-       
   return (
     <>
 <div className="app-frame">
@@ -38,13 +46,15 @@ const Engage = () => {
                       <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                     </svg>
                 </span>
-                <input type="text" className="form-control bg-dark border-0 text-white" placeholder="BUSCAR CANDIDATO" aria-label="Buscar" aria-describedby="basic-addon1" value={inputEngage} />
+                <input type="text" className="form-control bg-dark border-0 text-white" placeholder="BUSCAR CANDIDATO" aria-label="Buscar" aria-describedby="basic-addon1" />
             </div>
         </form>
 
         <div className="row row-cols-2 row-cols-md-4 g-3">
 
+
             {renderCharacters.map((character) => <CharacterCard {...character} />)}
+
 
         </div> 
     </div> 
@@ -54,4 +64,3 @@ const Engage = () => {
 };
 
 export default Engage;
-

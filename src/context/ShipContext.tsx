@@ -33,6 +33,7 @@ export default function ShipProvider({children}:ShipContentProps){
         crew:[]
     });
 
+
     const [characters, setCharacter] = useState<Character[]>([]);
     const [locations, setLocations] = useState<Places[]>([]);
     const [inputEngage, setInputEngage] = useState<String>("");
@@ -55,6 +56,7 @@ export default function ShipProvider({children}:ShipContentProps){
             alert(dataCharacters);
         }
     }
+
 
     function hireCharacter(newCrewMember:Character){
             if(ship.credits>=200 && ship.crew.length <=3 && newCrewMember.status!="Dead"){

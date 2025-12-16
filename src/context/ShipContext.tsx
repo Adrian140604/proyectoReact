@@ -36,7 +36,7 @@ export default function ShipProvider({children}:ShipContentProps){
 
     const [characters, setCharacter] = useState<Character[]>([]);
     const [locations, setLocations] = useState<Places[]>([]);
-    const [inputEngage, setInputEngage] = useState<String>("");
+   
 
     useEffect(() =>{
         getAllCharactersAndLocations();
@@ -65,8 +65,6 @@ export default function ShipProvider({children}:ShipContentProps){
             }
     }
 
-   
-
     function beginMission(){
         spendFuel();
         earnRandomMoney();
@@ -94,7 +92,6 @@ export default function ShipProvider({children}:ShipContentProps){
         beginMission,
         characters,
         locations,
-        inputEngage
     }
 
     return(

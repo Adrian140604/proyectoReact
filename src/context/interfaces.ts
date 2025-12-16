@@ -13,6 +13,6 @@ export interface RetournedValuesContext{
     beginMission:()=>void,
     characters:Character[],
     locations:Places[],
-    inputEngage:String,
+
 
 }

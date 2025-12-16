@@ -1,9 +1,12 @@
 import { Link, Outlet } from "react-router-dom";
+import ResourceBadge from "./ResourceBadge";
+import { useShip } from "../context/ShipContext";
 
 const Layout = () => {
+  const {ship} = useShip();
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top text-white">
         <div className="container-fluid">
           {/* He encontrado este boton que al hacer la pantalla mas peqeña desplaza el contenido del navBar a un desplegable, gracias Bootstrap */}
           <button
@@ -30,6 +33,12 @@ const Layout = () => {
                 <Link className="nav-link" to="/Missions">Missions</Link>
               </li>
             </ul>
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className="d-flex flex-column align-items-start gap-3">
+            <ResourceBadge icon="⛽" label="Fuel" value={ship.fuelLevel} />
+            <ResourceBadge icon="💰" label="Credits" value={ship.credits} />
           </div>
         </div>
       </nav>

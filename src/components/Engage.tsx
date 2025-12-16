@@ -2,26 +2,35 @@ import CharacterCard from "./CardCharacter";
 import type { Character } from "../models/charactersModels/interfaces";
 import { useShip } from "../context/ShipContext";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const Engage = () => {
 
     const { characters } = useShip();
     const [inputEngage, setInputEngage] = useState<string>("");
-    const [renderCharacters, setRenderCharacters] = useState<Character[]>(characters);
+    const [renderCharacters, setRenderCharacters] = useState<Character[]>([]);
+
+
+    useEffect(() => {
+        setRenderCharacters(characters);
+    }, [characters]);
 
     function handleChange(e:React.ChangeEvent<HTMLInputElement>){
         setInputEngage(e.target.value);
     }
+
+    function handleSearch(){
+        setRenderCharacters(
+            characters.filter(character => character.name.includes(inputEngage))
+        );
+    }
+
     return (
         <>
-            <div className="app-frame">
-                <div className="header-bar">
+            
                     <h3>CANTINA (API Contratación)</h3>
                     <p className="mb-0">VISTA: LA CANTINA (API)</p>
-                </div>
-
-                <div className="cantina-view">
-                </div>
+                
 
                 <div className="p-3">
                     <form className="d-flex mb-4">
@@ -39,17 +48,27 @@ const Engage = () => {
                             aria-describedby="basic-addon1" 
                             value={inputEngage} 
                             onChange={handleChange}
+                            onKeyUp={handleSearch}
                              />
                         </div>
                     </form>
 
-                    <div className="row row-cols-2 row-cols-md-4 g-3">
+                    <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
 
-                        {renderCharacters.length != 0 && renderCharacters.map(character => <CharacterCard {...character} />)}
-                        {renderCharacters.length == 0 && <h2>No se encuentran coincidencias</h2>}
-                    </div>
-                </div>
-            </div>
+                        {renderCharacters.length > 0 ? (
+                            renderCharacters.map(character => (
+                                <div className="col" key={character.id}>
+                                    <CharacterCard {...character} />
+                                </div>
+                            ))
+                        ) : (
+                            <div className="col-12 text-center">
+                            <h2>No se encuentran coincidencias</h2>
+                            </div>
+                        )}
+
+                        </div>
+         </div>
         </>
     );
 };

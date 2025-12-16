@@ -8,8 +8,8 @@ const CommandBridge = () => {
   //const crew = ship.crew;
   
   const crew = [
-  {
-    id: 1,
+   /* {
+  id: 1,
     name: "Rick Sanchez",
     status: "Alive",
     species: "Human",
@@ -53,7 +53,7 @@ const CommandBridge = () => {
     ],
     url: "https://rickandmortyapi.com/api/character/2",
     created: new Date("2017-11-04T18:50:21.651Z")
-  },
+  },*/
   {
     id: 3,
     name: "Summer Smith",
@@ -112,7 +112,7 @@ const CommandBridge = () => {
             <h2 className="text-center mb-4">Crew Members</h2>
             <div className="row">
               {crew.map((character) => (
-                <div className="col-md-4 mb-3">
+                <div className={crew.length === 1 ? "col-12" : "col-md-4 mb-3"}>
                   <CharacterCard {...character} />
                 </div>
               ))}

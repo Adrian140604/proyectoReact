@@ -57,7 +57,7 @@ const Engage = () => {
                         {renderCharacters.length > 0 ? (
                             renderCharacters.map(character => (
                             <div key={character.id} className={renderCharacters.length === 1 ? "col-12 col-md-10" : "col"}>
-                                <CharacterCard {...character} />
+                                <CharacterCard character={character} type="hire" />
                             </div>
                             ))
                         ) : (

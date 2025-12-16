@@ -1,10 +1,30 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useShip } from "../context/ShipContext";
 
 
 const Missions = () => {
-  const {ship, locations} = useShip();
+  const {ship, locations, spendFuel, earnRandomMoney} = useShip();
   const crew = ship.crew
+  const [option, setOption] = useState<string>("");
+  
+  function sendForm(e:React.ChangeEvent<HTMLFormElement>){
+        e.preventDefault();
+
+      if (ship.fuelLevel <= 25) {
+        alert("No hay combustible suficiente para realizar el viaje");
+        return;
+      }
+      spendFuel();
+      setTimeout(() => {
+        earnRandomMoney();
+        alert("El viaje ha sido exitoso");
+      }, 2000);
+}
+  
+
+  function handleChange(e:React.ChangeEvent<HTMLSelectElement>){
+    setOption(e.target.value);
+  }
 
   return (
     <>
@@ -21,7 +41,7 @@ const Missions = () => {
             </div>
 
             <div className="controls">
-                <select name="planeta" className="control-button select-control" required>
+                <select name="planeta" className="control-button select-control" required value={option} onChange={handleChange}>
                     <option value="" disabled selected>SELECCIONAR PLANETA</option>
                     {
                       typeof locations !== "string"
@@ -44,46 +64,6 @@ const Missions = () => {
     
     </>
   );
-};
-
-function sendForm() {
-
-  const {ship} = useShip();
-  const fuel = ship.fuelLevel;
-  if(fuel==0 || fuel<0){
-    let isLoadingState = isLoading();
-    return (
-    <>
-        {
-            (isLoadingState)?<p>Cargando ...</p>:<p>Contenido Cargado.</p>
-        }
-    </>
-    );
-  }
-}
-
-/**
- * 
- * @returns true if app is loading
- */
-function isLoading() :Boolean{
-
-    const [loading, setLoading] = useState<boolean>(true);
-    const {beginMission} = useShip();
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-        setLoading(false);
-        }, 2000);
-
-        if (!loading) { //Para que cuando cambie,  es decir valor inicial es false si cambia a true pues se realiza la function.
-            beginMission();
-        }
-
-        return () => clearTimeout(timer); 
-    }, []);
-
-   return loading;
 };
 
 export default Missions;

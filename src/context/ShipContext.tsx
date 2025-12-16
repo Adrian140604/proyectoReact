@@ -73,10 +73,9 @@ export default function ShipProvider({children}:ShipContentProps){
                 }));
     }
 
-    function beginMission(){
-        spendFuel();
-        earnRandomMoney();
-    }
+
+
+
 
     function spendMoney(){
             setShip(prevShip => ({
@@ -109,7 +108,8 @@ export default function ShipProvider({children}:ShipContentProps){
     const retournedValues : RetournedValuesContext = {
         ship,
         hireCharacter,
-        beginMission,
+        spendFuel,
+        earnRandomMoney,
         characters,
         locations,
         fireCharacter

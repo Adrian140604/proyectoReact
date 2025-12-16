@@ -14,7 +14,7 @@ const ResourceBadge = ({ icon, label, value }: ResourceBadgeProps) => {
         style={{ width: "24px", height: "24px" }}
       />
 
-      <span className="fw-semibold">
+      <span className="fw-semibold text-black">
         {label}: <span className="fw-bold">{value}</span>
       </span>
     </div>

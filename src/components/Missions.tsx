@@ -10,7 +10,7 @@ const Missions = () => {
   function sendForm(e:React.ChangeEvent<HTMLFormElement>){
         e.preventDefault();
 
-      if (ship.fuelLevel <= 25) {
+      if (ship.fuelLevel < 25) {
         alert("No hay combustible suficiente para realizar el viaje");
         return;
       }
@@ -18,6 +18,7 @@ const Missions = () => {
       setTimeout(() => {
         earnRandomMoney();
         alert("El viaje ha sido exitoso");
+        setOption("");
       }, 2000);
 }
   

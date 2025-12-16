@@ -13,6 +13,13 @@ export interface RetournedValuesContext{
     beginMission:()=>void,
     characters:Character[],
     locations:Places[],
+    fireCharacter:(firedCharacter:Character)=>void
 
 
+}
+
+export interface Hire{
+    text:string,
+    onClick:()=>void,
+    disabled:false
 }

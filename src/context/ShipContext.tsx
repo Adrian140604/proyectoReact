@@ -7,7 +7,6 @@ import type { Places } from "../models/locationsModels/interfaces";
 import { getCharacters } from "../services/CharactersServices";
 import { getPlaces } from "../services/LocationsServices";
 import { useEffect } from "react";
-import type { Hire } from "./interfaces";
 
 
 const ShipSpaceContext = createContext<RetournedValuesContext | null>(null);
@@ -61,10 +60,17 @@ export default function ShipProvider({children}:ShipContentProps){
 
 
     function hireCharacter(newCrewMember:Character){
-            if(ship.credits>=200 && ship.crew.length <=3 && newCrewMember.status!="Dead"){
+            if(ship.credits>=200 && ship.crew.length <=3 && newCrewMember.status=="Alive" && !ship.crew.includes(newCrewMember)){
                 spendMoney();
                 addCrewMember(newCrewMember);
             }
+    }
+
+    function fireCharacter(firedCharacter:Character){
+         setShip(prevShip => ({
+                ...prevShip,
+                crew: prevShip.crew.filter(character => character.id !== firedCharacter.id)
+                }));
     }
 
     function beginMission(){
@@ -73,15 +79,24 @@ export default function ShipProvider({children}:ShipContentProps){
     }
 
     function spendMoney(){
-        setShip({...ship, credits:ship.credits-200});
+            setShip(prevShip => ({
+            ...prevShip,
+            credits: prevShip.credits - 200
+            }));
     }
 
     function earnRandomMoney(){
-        setShip({...ship, credits:ship.credits+Math.random()*100});
+       setShip(prevShip => ({
+            ...prevShip,
+            credits: prevShip.credits +Math.random()*100
+            }));
     }
 
     function spendFuel(){
-        setShip({...ship, fuelLevel:ship.fuelLevel-25});
+        setShip(prevShip => ({
+            ...prevShip,
+            fuelLevel: prevShip.fuelLevel - 25
+            }));
     }
 
     function addCrewMember(newCrewMember:Character){
@@ -97,6 +112,7 @@ export default function ShipProvider({children}:ShipContentProps){
         beginMission,
         characters,
         locations,
+        fireCharacter
     }
 
     return(

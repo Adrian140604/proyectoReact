@@ -43,5 +43,4 @@ const CharacterCard = ({ character, type }: CardCharacterProps) => {
   );
 };
 
-
 export default CharacterCard;

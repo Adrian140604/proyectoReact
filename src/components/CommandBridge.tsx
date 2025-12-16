@@ -35,19 +35,12 @@ const CommandBridge = () => {
 
     return (
       <>
-        <div>
-          <div>
+        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+          {crew.map(character => (
+          <div key={character.id} className={crew.length === 1 ? "col-12 col-md-10" : "col"}>
+              <CharacterCard {...character} />
           </div>
-          <div className="container mt-4">
-            <h2 className="text-center mb-4">Crew Members</h2>
-            <div className="row">
-              {crew.map((character) => (
-                <div className={crew.length === 1 ? "col-12" : "col-md-4 mb-3"}>
-                  <CharacterCard character={character} type="see" />
-                </div>
-              ))}
-            </div>
-          </div>
+          ))};
         </div>
       </>
     );

@@ -41,27 +41,3 @@
   color: #888;
 }
 
-/*
-Estilo porvisional
-*/
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #333;
-  color: white;
-  padding: 1rem;
-  z-index: 1000;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  margin: 0 1rem;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-

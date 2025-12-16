@@ -1,13 +1,14 @@
 export interface CardCharacterProps{
+    id:       number;
     name:     string;
     status:   string;
     image:    string;
     species:  string;
 }
 
-const CharacterCard = ({ name, status, image, species }: CardCharacterProps) => {
+const CharacterCard = ({ id, name, status, image, species }: CardCharacterProps) => {
   return (
-    <div className="card h-100 shadow-sm rounded overflow-hidden">
+    <div className="card h-100 shadow-sm rounded overflow-hidden" key={id}>
       <img
         src={image}
         className="card-img-top img-fluid"

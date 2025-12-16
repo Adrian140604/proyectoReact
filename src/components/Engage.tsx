@@ -1,6 +1,6 @@
-
+import CharacterCard from "./CardCharacter";
 import type { Character } from "../models/charactersModels/interfaces";
-
+import { useShip } from "../context/ShipContext";
 import { useState } from "react";
 
 const Engage = () => {
@@ -45,7 +45,7 @@ const Engage = () => {
 
                     <div className="row row-cols-2 row-cols-md-4 g-3">
 
-                        {renderCharacters.length != 0 && renderCharacters.map(character => <CharacterCard name={character.name} status={character.status} image={character.image} />)}
+                        {renderCharacters.length != 0 && renderCharacters.map(character => <CharacterCard {...character} />)}
                         {renderCharacters.length == 0 && <h2>No se encuentran coincidencias</h2>}
                     </div>
                 </div>

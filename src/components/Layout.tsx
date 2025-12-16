@@ -1,6 +1,8 @@
 import { Link, Outlet } from "react-router-dom";
 import ResourceBadge from "./ResourceBadge";
 import { useShip } from "../context/ShipContext";
+import gas from "../assets/img/gas.png";
+import credits from "../assets/img/credits.jpg";
 
 const Layout = () => {
   const {ship} = useShip();
@@ -35,10 +37,10 @@ const Layout = () => {
             </ul>
           </div>
         </div>
-        <div className="col-md-3">
-          <div className="d-flex flex-column align-items-start gap-3">
-            <ResourceBadge icon="⛽" label="Fuel" value={ship.fuelLevel} />
-            <ResourceBadge icon="💰" label="Credits" value={ship.credits} />
+        <div className="container my-4 d-flex">
+          <div className="d-flex justify-content-center gap-3 ms-auto">
+            <ResourceBadge icon={gas} label="Fuel" value={ship.fuelLevel} />
+            <ResourceBadge icon={credits} label="Credits" value={ship.credits} />
           </div>
         </div>
       </nav>

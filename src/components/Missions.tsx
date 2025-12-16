@@ -10,7 +10,7 @@ const Missions = () => {
   function sendForm(e:React.ChangeEvent<HTMLFormElement>){
         e.preventDefault();
 
-      if (ship.fuelLevel <= 25) {
+      if (ship.fuelLevel < 25) {
         alert("No hay combustible suficiente para realizar el viaje");
         return;
       }
@@ -18,6 +18,7 @@ const Missions = () => {
       setTimeout(() => {
         earnRandomMoney();
         alert("El viaje ha sido exitoso");
+        setOption("");
       }, 2000);
 }
   
@@ -42,7 +43,6 @@ const Missions = () => {
 
             <div className="controls">
                 <select name="planeta" className="control-button select-control" required value={option} onChange={handleChange}>
-                    <option value="" disabled selected>SELECCIONAR PLANETA</option>
                     {
                       typeof locations !== "string"
                         ? locations.map((place) => (<option key={place.name} value={place.name}>{place.name}</option>))
@@ -50,14 +50,15 @@ const Missions = () => {
                     }
                 </select>
                 
-                <select name="tripulante" className="control-button select-control" required>
-                    <option value="" disabled selected>ASIGNAR TRIPULANTE</option>
+              { crew.length>0 && <select name="tripulante" className=" m-2 control-button select-control" required>
                     {
                       crew.map( (character) => {return  <option key={character.id} value={character.name}>{character.name}</option>;})
                     }
-                </select>
+                </select>}
 
-                <button type="submit" className="control-button start-mission-button">INICIAR MISIÓN</button>
+                {crew.length ==0 && <span className =" m-2 text-danger fw-bold small p-1 border border-danger rounded bg-danger bg-opacity-10 d-inline-block text-center">No existen tripulantes todavía</span>}
+
+               {crew.length>0 && <button type="submit" className="control-button start-mission-button">INICIAR MISIÓN</button>}
             </div>
         </div>
     </form>

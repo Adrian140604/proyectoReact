@@ -87,7 +87,7 @@ export default function ShipProvider({children}:ShipContentProps){
     function earnRandomMoney(){
        setShip(prevShip => ({
             ...prevShip,
-            credits: prevShip.credits +Math.random()*100
+            credits: Math.round(prevShip.credits +Math.random()*100)
             }));
     }
 

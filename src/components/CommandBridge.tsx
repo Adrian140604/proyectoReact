@@ -41,12 +41,6 @@ const CommandBridge = () => {
             ))}
           </div>
         </div>
-        <div className="col-md-3">
-          <div className="d-flex flex-column align-items-start gap-3">
-            <ResourceBadge icon="⛽" label="Fuel" value={ship.fuelLevel} />
-            <ResourceBadge icon="💰" label="Credits" value={ship.credits} />
-          </div>
-        </div>
       </div>
     </div>
   );

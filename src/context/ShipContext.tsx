@@ -44,8 +44,16 @@ export default function ShipProvider({children}:ShipContentProps){
      async function getAllCharactersAndLocations(){
         const dataCharacters = await getCharacters();
         const dataPlaces = await getPlaces();
-        setLocations(dataPlaces);
-        setCharacter(dataCharacters);
+        if(typeof(dataPlaces)!="string"){
+            setLocations(dataPlaces);
+        }else{
+            alert(dataPlaces);
+        }
+        if(typeof(dataCharacters)!="string"){
+            setCharacter(dataCharacters);
+        }else{
+            alert(dataCharacters);
+        }
     }
 
     function hireCharacter(newCrewMember:Character){

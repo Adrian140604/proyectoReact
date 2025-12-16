@@ -8,7 +8,7 @@ export interface CardCharacterProps{
 }
 
 const CharacterCard = ({ character, type }: CardCharacterProps) => {
-  const {hireCharacter} = useShip();
+  const {hireCharacter, fireCharacter} = useShip();
 
   return (
     <div className="card h-100 shadow-sm rounded overflow-hidden" key={character.id}>
@@ -36,6 +36,7 @@ const CharacterCard = ({ character, type }: CardCharacterProps) => {
             {character.status}
           </span>
           {type=="hire" && <Button text="Contratar" onClick={() => hireCharacter(character)}/>}
+          {type=="see" && <Button text="Despedir" onClick={() => fireCharacter(character)}/>}
         </div>
       </div>
     </div>

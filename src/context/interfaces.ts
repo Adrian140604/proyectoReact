@@ -12,7 +12,8 @@ export interface RetournedValuesContext{
     hireCharacter:(newCrewMember:Character)=>void,
     beginMission:()=>void,
     characters:Character[],
-    locations:Places[]
+    locations:Places[],
+    fireCharacter:(firedCharacter:Character)=>void
 
 
 }

@@ -2,7 +2,7 @@ import { Link, Outlet } from "react-router-dom";
 import ResourceBadge from "./ResourceBadge";
 import { useShip } from "../context/ShipContext";
 import gas from "../assets/img/gas.png";
-import credits from "../assets/img/credits.jpg";
+import credits from "../assets/img/credits.png";
 
 const Layout = () => {
   const {ship} = useShip();

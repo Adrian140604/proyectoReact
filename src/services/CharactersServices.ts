@@ -8,7 +8,6 @@ export const getCharacters=async (): Promise<Character[] | string>  =>{
         return responseJson.results as Character[];
     }catch(e:any){
         return `Error al obtener los personajes de la base de datos, contacte con el administrador e indiquele el siguiente mensaje: ${e.Message}`
-
     }
     
     

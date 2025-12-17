@@ -1,4 +1,4 @@
-import type { Character } from "../../types/interfaceCharacterModel"
+import type { Character } from "./interfaceCharacterModel"
 
 export interface spaceShift{
     credits:number,

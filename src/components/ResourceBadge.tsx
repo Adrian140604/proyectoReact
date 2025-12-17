@@ -4,6 +4,7 @@ interface ResourceBadgeProps{
     value: number;
 }
 
+
 const ResourceBadge = ({ icon, label, value }: ResourceBadgeProps) => {
   return (
     <div className="d-flex align-items-center gap-2 px-3 py-2 border rounded shadow-sm bg-light">

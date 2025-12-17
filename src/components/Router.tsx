@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import Layout from "./Layout";
-import CommandBridge from "./CommandBridge";
-import Engage from "./Engage";
-import Missions from "./Missions";
+import CommandBridge from "../pages/CommandBridge"
+import Engage from "../pages/Engage";
+import Missions from "../pages/Missions";
 import ShipProvider from "../context/ShipContext";
-import Error from "./Error";
+import Error from "../pages/Error";
 
 const Router = () => {
   return (

@@ -1,5 +1,5 @@
-import CharacterCard from "./CardCharacter";
-import type { Character } from "../models/charactersModels/interfaces";
+import CharacterCard from "../components/CardCharacter";
+import type { Character } from "../types/interfaceCharacterModel";
 import { useShip } from "../context/ShipContext";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -27,11 +27,6 @@ const Engage = () => {
 
     return (
         <>
-            
-                    <h3>CANTINA (API Contratación)</h3>
-                    <p className="mb-0">VISTA: LA CANTINA (API)</p>
-                
-
                 <div className="p-3">
                     <form className="d-flex mb-4">
                         <div className="input-group">

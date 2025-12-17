@@ -1,9 +1,9 @@
 
-import type { Character } from "../models/charactersModels/interfaces";
-import type { spaceShift } from "../models/spaceShiftModels/interfaces";
-import type { RetournedValuesContext, ShipContentProps } from "./interfaces";
+import type { Character } from "../types/interfaceCharacterModel";
+import type { spaceShift } from "../types/interfaceSpaceShip";
+import type { RetournedValuesContext, ShipContentProps } from "../types/interfaceContext";
 import { useContext, createContext, useState } from "react";
-import type { Places } from "../models/locationsModels/interfaces";
+import type { Places } from "../types/interfacesLocationModel";
 import { getCharacters } from "../services/CharactersServices";
 import { getPlaces } from "../services/LocationsServices";
 import { useEffect } from "react";

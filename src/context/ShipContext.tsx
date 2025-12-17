@@ -73,10 +73,9 @@ export default function ShipProvider({children}:ShipContentProps){
                 }));
     }
 
-    function beginMission(){
-        spendFuel();
-        earnRandomMoney();
-    }
+
+
+
 
     function spendMoney(){
             setShip(prevShip => ({
@@ -88,7 +87,7 @@ export default function ShipProvider({children}:ShipContentProps){
     function earnRandomMoney(){
        setShip(prevShip => ({
             ...prevShip,
-            credits: prevShip.credits +Math.random()*100
+            credits: Math.round(prevShip.credits +Math.random()*100)
             }));
     }
 
@@ -109,7 +108,8 @@ export default function ShipProvider({children}:ShipContentProps){
     const retournedValues : RetournedValuesContext = {
         ship,
         hireCharacter,
-        beginMission,
+        spendFuel,
+        earnRandomMoney,
         characters,
         locations,
         fireCharacter

@@ -54,19 +54,17 @@ const Engage = () => {
                     </form>
 
                     <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
-
                         {renderCharacters.length > 0 ? (
                             renderCharacters.map(character => (
-                                <div className="col" key={character.id}>
-                                    <CharacterCard character={character} type="hire" />
-                                </div>
+                            <div key={character.id} className={renderCharacters.length === 1 ? "col-12 col-md-10" : "col"}>
+                                <CharacterCard character={character} type="hire" />
+                            </div>
                             ))
                         ) : (
                             <div className="col-12 text-center">
                             <h2>No se encuentran coincidencias</h2>
                             </div>
                         )}
-
                         </div>
          </div>
         </>

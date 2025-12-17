@@ -5,6 +5,7 @@ const url="https://rickandmortyapi.com/api/location";
 export const getPlaces = async ():Promise <Places[] | string> =>{
     try{
         let response= await fetch(url);
+        if(!response.ok) throw new Error();
         let responseJson=await response.json();
         return responseJson.results as Places[]
     }catch(e:any){

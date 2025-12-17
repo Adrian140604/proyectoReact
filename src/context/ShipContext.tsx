@@ -1,12 +1,13 @@
 
-import type { Character } from "../models/charactersModels/interfaces";
-import type { spaceShift } from "../models/spaceShiftModels/interfaces";
-import type { RetournedValuesContext, ShipContentProps } from "./interfaces";
+import type { Character } from "../types/interfaceCharacterModel";
+import type { spaceShift } from "../types/interfaceSpaceShip";
+import type { RetournedValuesContext, ShipContentProps } from "../types/interfaceContext";
 import { useContext, createContext, useState } from "react";
-import type { Places } from "../models/locationsModels/interfaces";
+import type { Places } from "../types/interfacesLocationModel";
 import { getCharacters } from "../services/CharactersServices";
 import { getPlaces } from "../services/LocationsServices";
 import { useEffect } from "react";
+
 
 const ShipSpaceContext = createContext<RetournedValuesContext | null>(null);
 
@@ -36,7 +37,7 @@ export default function ShipProvider({children}:ShipContentProps){
 
     const [characters, setCharacter] = useState<Character[]>([]);
     const [locations, setLocations] = useState<Places[]>([]);
-    const [inputEngage, setInputEngage] = useState<String>("");
+   
 
     useEffect(() =>{
         getAllCharactersAndLocations();
@@ -59,42 +60,59 @@ export default function ShipProvider({children}:ShipContentProps){
 
 
     function hireCharacter(newCrewMember:Character){
-            if(ship.credits>=200 && ship.crew.length <=3 && newCrewMember.status!="Dead"){
+            if(ship.credits>=200 && ship.crew.length <=3 && newCrewMember.status=="Alive" && !ship.crew.includes(newCrewMember)){
                 spendMoney();
                 addCrewMember(newCrewMember);
             }
     }
 
-   
-
-    function beginMission(){
-        spendFuel();
-        earnRandomMoney();
+    function fireCharacter(firedCharacter:Character){
+         setShip(prevShip => ({
+                ...prevShip,
+                crew: prevShip.crew.filter(character => character.id !== firedCharacter.id)
+                }));
     }
 
+
+
+
+
     function spendMoney(){
-        setShip({...ship, credits:ship.credits-200});
+            setShip(prevShip => ({
+            ...prevShip,
+            credits: prevShip.credits - 200
+            }));
     }
 
     function earnRandomMoney(){
-        setShip({...ship, credits:ship.credits+Math.random()*100});
+       setShip(prevShip => ({
+            ...prevShip,
+            credits: Math.round(prevShip.credits +Math.random()*100)
+            }));
     }
 
     function spendFuel(){
-        setShip({...ship, fuelLevel:ship.fuelLevel-25});
+        setShip(prevShip => ({
+            ...prevShip,
+            fuelLevel: prevShip.fuelLevel - 25
+            }));
     }
 
     function addCrewMember(newCrewMember:Character){
-        const newCrew = [...ship.crew, newCrewMember];
-        setShip({...ship, crew:newCrew});
+                setShip(prevShip => ({
+                ...prevShip,
+                crew: [...prevShip.crew, newCrewMember]
+                }));
+
     }
     const retournedValues : RetournedValuesContext = {
         ship,
         hireCharacter,
-        beginMission,
+        spendFuel,
+        earnRandomMoney,
         characters,
         locations,
-        inputEngage
+        fireCharacter
     }
 
     return(

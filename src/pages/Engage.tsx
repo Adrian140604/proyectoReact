@@ -1,0 +1,69 @@
+import CharacterCard from "../components/CardCharacter";
+import type { Character } from "../types/interfaceCharacterModel";
+import { useShip } from "../context/ShipContext";
+import { useState } from "react";
+import { useEffect } from "react";
+
+const Engage = () => {
+
+    const { characters } = useShip();
+    const [inputEngage, setInputEngage] = useState<string>("");
+    const [renderCharacters, setRenderCharacters] = useState<Character[]>([]);
+
+
+    useEffect(() => {
+        setRenderCharacters(characters);
+    }, [characters]);
+
+    function handleChange(e:React.ChangeEvent<HTMLInputElement>){
+        setInputEngage(e.target.value);
+    }
+
+    function handleSearch(){
+        setRenderCharacters(
+            characters.filter(character => character.name.includes(inputEngage))
+        );
+    }
+
+    return (
+        <>
+                <div className="p-3">
+                    <form className="d-flex mb-4">
+                        <div className="input-group">
+                            <span className="input-group-text bg-dark border-0 text-white" id="basic-addon1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                </svg>
+                            </span>
+                            <input 
+                            type="text" 
+                            className="form-control bg-dark border-0 text-white" 
+                            placeholder="BUSCAR CANDIDATO" 
+                            aria-label="Buscar" 
+                            aria-describedby="basic-addon1" 
+                            value={inputEngage} 
+                            onChange={handleChange}
+                            onKeyUp={handleSearch}
+                             />
+                        </div>
+                    </form>
+
+                    <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+                        {renderCharacters.length > 0 ? (
+                            renderCharacters.map(character => (
+                            <div key={character.id} className={renderCharacters.length === 1 ? "col-12 col-md-10" : "col"}>
+                                <CharacterCard character={character} type="hire" />
+                            </div>
+                            ))
+                        ) : (
+                            <div className="col-12 text-center">
+                            <h2>No se encuentran coincidencias</h2>
+                            </div>
+                        )}
+                        </div>
+         </div>
+        </>
+    );
+};
+
+export default Engage;

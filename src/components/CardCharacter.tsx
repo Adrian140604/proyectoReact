@@ -1,41 +1,54 @@
+import { useShip } from "../context/ShipContext";
+import type { Character } from "../types/interfaceCharacterModel";
+import Button from "./Button";
+
 export interface CardCharacterProps{
-    name:     string;
-    status:   string;
-    image:    string;
-    species:  string;
+    character:Character,
+    type:  string;
 }
 
-const CharacterCard = ({ name, status, image, species }: CardCharacterProps) => {
+const CharacterCard = ({ character, type }: CardCharacterProps) => {
+  const { hireCharacter, fireCharacter } = useShip();
+
   return (
-    <div className="card h-100 shadow-sm rounded overflow-hidden">
+    <div className="card shadow-sm">
       <img
-        src={image}
-        className="card-img-top img-fluid"
-        alt={name}
-        style={{ objectFit: "cover", height: "250px" }}
+        src={character.image}
+        className="card-img-top"
+        alt={character.name}
       />
       <div className="card-body text-center">
-        <h5 className="card-title fw-bold mb-1">{name}</h5>
-        <p className="card-text">
-          <small className="text-muted">{species}</small>
-        </p>
-        <div className="mt-2">
-          <span
-            className={`badge ${
-              status === "Alive"
-                ? "bg-success"
-                : status === "Dead"
-                ? "bg-danger"
-                : "bg-secondary"
-            }`}
-          >
-            {status}
-          </span>
+        <h5 className="card-title mb-2">{character.name}</h5>
+
+        <span
+          className={`badge mb-3 ${
+            character.status === "Alive"
+              ? "bg-success"
+              : character.status === "Dead"
+              ? "bg-danger"
+              : "bg-secondary"
+          }`}
+        >
+          {character.status}
+        </span>
+
+        <div className="d-grid mt-3">
+          {type === "hire" && (
+            <Button
+              text="Contratar"
+              onClick={() => hireCharacter(character)}
+            />
+          )}
+          {type === "see" && (
+            <Button
+              text="Despedir"
+              onClick={() => fireCharacter(character)}
+            />
+          )}
         </div>
       </div>
     </div>
   );
 };
-
 
 export default CharacterCard;

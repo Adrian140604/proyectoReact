@@ -7,7 +7,7 @@ interface ButtonProps{
 
 const Button=({text, onClick, disabled= false}: ButtonProps) =>{
     return(
-        <button onClick={onClick} disabled={disabled}>
+        <button className="btn btn-info text-white" onClick={onClick} disabled={disabled}>
             {text}
         </button>
     );

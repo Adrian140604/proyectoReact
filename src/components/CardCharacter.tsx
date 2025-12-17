@@ -1,5 +1,5 @@
 import { useShip } from "../context/ShipContext";
-import type { Character } from "../models/charactersModels/interfaces";
+import type { Character } from "../types/interfaceCharacterModel";
 import Button from "./Button";
 
 export interface CardCharacterProps{

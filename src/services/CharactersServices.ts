@@ -4,6 +4,7 @@ const url="https://rickandmortyapi.com/api/character";
 export const getCharacters=async (): Promise<Character[] | string>  =>{
     try{
         let response= await fetch(url);
+        if (!response.ok) throw new Error();
         let responseJson=await response.json();
         return responseJson.results as Character[];
     }catch(e:any){

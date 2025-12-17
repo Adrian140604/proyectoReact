@@ -1,4 +1,4 @@
-import CharacterCard from "./CardCharacter";
+import CharacterCard from "../components/CardCharacter";
 import type { Character } from "../models/charactersModels/interfaces";
 import { useShip } from "../context/ShipContext";
 import { useState } from "react";

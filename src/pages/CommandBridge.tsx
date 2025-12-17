@@ -1,5 +1,5 @@
 import { useShip } from "../context/ShipContext";
-import CharacterCard from "./CardCharacter";
+import CharacterCard from "../components/CardCharacter";
 
 const CommandBridge = () => {
   const { ship } = useShip();

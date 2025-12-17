@@ -1,4 +1,4 @@
-import type {Character} from "../models/charactersModels/interfaces"
+import type {Character} from "../types/interfaceCharacterModel"
 const url="https://rickandmortyapi.com/api/character";
 
 export const getCharacters=async (): Promise<Character[] | string>  =>{

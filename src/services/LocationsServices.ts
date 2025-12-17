@@ -1,4 +1,4 @@
-import type {Places} from "../models/locationsModels/interfaces"
+import type {Places} from "../types/interfacesLocationModel"
 const url="https://rickandmortyapi.com/api/location";
 
 

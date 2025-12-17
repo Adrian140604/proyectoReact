@@ -1,5 +1,5 @@
 import CharacterCard from "../components/CardCharacter";
-import type { Character } from "../models/charactersModels/interfaces";
+import type { Character } from "../types/interfaceCharacterModel";
 import { useShip } from "../context/ShipContext";
 import { useState } from "react";
 import { useEffect } from "react";

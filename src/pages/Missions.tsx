@@ -28,13 +28,9 @@ const Missions = () => {
 
   return (
     <div className="container py-4">
-      {/* Header Estilizado */}
-  
       <div className="card shadow-lg border-0 overflow-hidden">
         <form id="missionForm" onSubmit={sendForm}>
           <div className="row g-0">
-            
-            {/* Contenedor del Mapa */}
             <div className="col-lg-7 bg-black d-flex align-items-center justify-content-center" style={{ minHeight: "300px" }}>
               <img 
                 src="https://images.pexels.com/photos/41949/earth-earth-at-night-night-lights-41949.jpeg" 
@@ -43,12 +39,8 @@ const Missions = () => {
                 style={{ objectFit: "cover", height: "100%", width: "100%" }}
               />
             </div>
-
-            {/* Controles de Misión */}
             <div className="col-lg-5 p-4 bg-light d-flex flex-column justify-content-center">
               <h3 className="h5 mb-4 text-uppercase fw-bold text-secondary border-bottom pb-2">Configuración de Vuelo</h3>
-              
-              {/* Selección de Destino */}
               <div className="mb-3">
                 <label className="form-label fw-bold small text-muted">DESTINO:</label>
                 <select 
@@ -65,8 +57,6 @@ const Missions = () => {
                   }
                 </select>
               </div>
-
-              {/* Selección de Tripulante */}
               <div className="mb-4">
                 <label className="form-label fw-bold small text-muted">COMANDANTE A CARGO:</label>
                 {crew.length > 0 ? (
@@ -74,33 +64,29 @@ const Missions = () => {
                     <option value="" disabled>Selecciona un Tripulante...</option>
                     {crew.map((character) => (
                       <option key={character.id} value={character.name}>
-                        🧑‍🚀 {character.name}
+                        {character.name}
                       </option>
                     ))}
                   </select>
                 ) : (
-                  <div className="alert alert-danger py-2 px-3 m-0 d-flex align-items-center" role="alert">
-                    <span className="me-2">⚠️</span>
+                  <div className="alert alert-danger py-2 px-3 m-0 d-flex justify-content-center align-items-center text-center" role="alert">
                     <small className="fw-bold text-uppercase">No existen tripulantes todavía</small>
                   </div>
                 )}
               </div>
 
-              {/* Botón de Acción */}
               {crew.length > 0 ? (
                 <button 
                   type="submit" 
                   className="btn btn-warning btn-lg w-100 fw-bold shadow hover-zoom"
                 >
-                  🚀 INICIAR MISIÓN
+                  INICIAR MISIÓN
                 </button>
               ) : (
                 <button className="btn btn-secondary btn-lg w-100" disabled>
                   BLOQUEADO
                 </button>
               )}
-
-              {/* Info de Combustible */}
               <div className="mt-3 text-center">
                 <small className="text-muted">Consumo estimado: <span className="text-danger fw-bold">25L</span></small>
               </div>
